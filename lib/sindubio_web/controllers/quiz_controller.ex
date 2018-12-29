@@ -30,8 +30,6 @@ defmodule SindubioWeb.QuizController do
     render(conn, "show.html", quiz: quiz)
   end
 
-  alias Sindubio.Quizzes.Question
-
   def edit(conn, %{"id" => id}) do
     quiz = Quizzes.get_quiz!(id)
     changeset = Quizzes.change_quiz(quiz)
@@ -54,7 +52,7 @@ defmodule SindubioWeb.QuizController do
     quiz = Quizzes.get_quiz!(id)
 
     case Quizzes.update_quiz(quiz, quiz_params) do
-      {:ok, quiz} ->
+      {:ok, _quiz} ->
         conn
         |> put_flash(:info, "Quiz updated successfully.")
         |> redirect(to: Routes.quiz_path(conn, :index))
@@ -104,12 +102,12 @@ defmodule SindubioWeb.QuizController do
       %{pin: quiz.pin, time: 5, msg: "Quiz about to start"}
     )
 
-    task = Task.async(fn -> host_start(conn, %{quiz: quiz}) end)
+    Task.async(fn -> host_start(conn, %{quiz: quiz}) end)
 
     render(conn, "host.html", quiz: quiz)
   end
 
-  def host_start(conn, %{quiz: quiz}) do
+  def host_start(_conn, %{quiz: quiz}) do
     :timer.sleep(5000)
 
     question_count = quiz.questions |> Enum.count()

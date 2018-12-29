@@ -38,7 +38,7 @@ defmodule SindubioWeb.QuestionController do
   end
 
   def update(conn, %{"id" => id, "question" => question_params}) do
-    question = Quizzes.get_question!(id)
+    question = Quizzes.get_question(id)
 
     case Quizzes.update_question(question, question_params) do
       {:ok, question} ->

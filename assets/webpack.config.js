@@ -14,7 +14,16 @@ module.exports = (env, options) => ({
     ],
   },
   entry: {
-    './js/app.js': ['./js/app.js'].concat(glob.sync('./vendor/**/*.js')),
+    app: [
+      './js/app.js',
+      './js/socket.js',
+      './js/helpers.js',
+      './js/pages/editQuiz.js',
+      './js/pages/host.js',
+      './js/pages/info.js',
+      './js/pages/landing.js',
+      './js/pages/start.js',
+    ].concat(glob.sync('./vendor/**/*.js')),
     vendor: ['underscore'],
   },
   output: {

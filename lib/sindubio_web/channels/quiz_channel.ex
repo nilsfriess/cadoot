@@ -2,7 +2,7 @@ defmodule SindubioWeb.QuizChannel do
   use Phoenix.Channel
   alias SindubioWeb.Presence
 
-  def join("quiz:" <> channel_pin, _params, socket) do
+  def join("quiz:" <> _channel_pin, _params, socket) do
     send(self(), :after_join)
     {:ok, socket}
   end
@@ -50,7 +50,7 @@ defmodule SindubioWeb.QuizChannel do
     {:reply, {:ok, %{uuid: uuid}}, socket}
   end
 
-  def handle_in("answers:" <> uuid, %{"answers" => answers}, socket) do
+  def handle_in("answers:" <> _uuid, %{"answers" => _answers}, socket) do
     {:noreply, socket}
   end
 
