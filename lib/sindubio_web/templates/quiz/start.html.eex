@@ -1,0 +1,59 @@
+<div class="start-container">
+
+  <h3 class="light"><%= @quiz.title %></h3>
+  <span class="light" id="online_count"></span>
+  <hr/>
+  <p class="description light"><%= @quiz.description %></p>
+
+  <div class="loader">
+    <div id="lobby-loader" class="preloader-wrapper big active">
+      <div class="spinner-layer spinner-blue-only">
+	<div class="circle-clipper left">
+          <div class="circle"></div>
+	</div><div class="gap-patch">
+          <div class="circle"></div>
+	</div><div class="circle-clipper right">
+          <div class="circle"></div>
+	</div>
+      </div>
+    </div>
+  </div>
+
+  <p class="waiting-msg center light">Waiting for host to start the quiz</p>
+
+
+  <div class="answers">
+    <div class="card">
+      <div class="card-content answer1">
+	<span class="card-title">A</span>
+	<p></p>
+      </div>
+    </div>
+    
+    <div class="card">
+      <div class="card-content answer2">
+	<span class="card-title">B</span>
+	<p></p>
+      </div>
+    </div>
+    
+    <div class="card">
+      <div class="card-content answer3">
+	<span class="card-title">C</span>
+	<p></p>
+      </div>
+    </div>
+    
+    <div class="card">
+      <div class="card-content answer4">
+	<span class="card-title">D</span>
+	<p></p>
+      </div>
+    </div>
+    
+  </div>
+
+  <script>
+    window.quizPin = <%= @quiz.pin;  %>
+    window.onStartPage = true;
+  </script>

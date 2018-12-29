@@ -1,0 +1,24 @@
+<div class="page-container">
+  <div class="logo">
+    <h3 class="light center">quiz</h3>
+  </div>
+
+  <%= form_for @conn, Routes.quiz_path(@conn, :start_quiz), [method: :get], fn f -> %>
+  <div class="pin-wrapper">
+    <div class="input-wrapper">
+      <div class="input-field">
+	<%= number_input f, :pin_input %>
+	<!--      <input id="pin_input" type="number"> -->
+	<label for="pin_input">PIN</label>
+      </div>
+      <%= submit "Start", class: "btn disabled", id: "pin_input_button" %>
+      <!--    <button id="pin_input_button" class="btn disabled">Start</button> -->
+      <% end %>
+    </div>
+    <div>
+      <p class="light">Enter the pin to start the quiz</p>
+    </div>
+  </div>
+</div>
+
+<script> window.onLandingPage = true; </script>

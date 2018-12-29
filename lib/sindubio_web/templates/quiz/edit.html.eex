@@ -1,0 +1,206 @@
+<div class="edit-container">
+  <%= form_for @changeset, Routes.quiz_path(@conn, :update, @quiz), fn f -> %>
+
+  <div class="edit">
+    <h2 class="light">Edit Quiz</h2>
+    <%= submit "Save quiz", class: "btn amber black-text submit" %>
+  </div>
+
+  <%= label f, :title %>
+  <%= text_input f, :title %>
+  <%= error_tag f, :title %>
+
+  <%= label f, :description %>
+  <%= text_input f, :description %>
+  <%= error_tag f, :description %>
+
+  <%= label f, :pin %>
+  <%= number_input f, :pin %>
+  <%= error_tag f, :pin %>
+
+  <% end %>
+
+
+  <div class="question-block">
+    <h3 class="light">Questions</h3>
+    <a class="btn modal-trigger" href="#new-question-modal">Add question</a>    
+  </div>
+  <%= if Enum.empty? @quiz.questions do %>
+  <span class="light">No questions available yet, start
+    <a class="teal-text modal-trigger" href="#new-question-modal">adding</a>
+    some.
+  </span>
+  <% else %>
+  <ul class="collapsible">
+    <%= for {question, index} <- Enum.with_index(@quiz.questions) do %>
+	<li>
+	  <div class="collapsible-header">
+	    <div class="left">
+	      <emph class="text-teal number"><%= index + 1 %>. </emph>
+	      <span class="title"><%= question.title %></span>
+	    </div>
+	    <div class="right">
+	      <%= link to: Routes.question_path(@conn, :delete, question), method: :delete, class: "delete secondary-content red-text" do %>
+	      <i class="material-icons">delete</i>
+	      <% end %>
+	      
+	      <%= link to: Routes.question_path(@conn, :edit, question), class: "secondary-content" do %>
+	      <i class="material-icons">edit</i>
+	      <% end %>
+	    </div>
+	  </div>
+	  <div class="collapsible-body">
+	    <%= if question.code != "" do %>
+	    <pre><code class="cpp code"><%= question.code  %></code>
+	    </pre>
+	    <% end %>
+
+	    <table>
+	      <thead>
+		<tr>
+		  <th></th>
+		  <th>Answer</th>
+		  <th class="center">Is correct?</th>
+		</tr>
+	      </thead>
+	      <tbody>
+		<tr>
+		  <td><b>A</b></td>
+		  <td><%= question.answer1 %></td>
+		  <td class="center">
+		    <%= if question.answer1_correct do %>
+		    yes
+		    <% else %>
+		    no
+		    <% end %>
+		  </td>
+		</tr>
+
+		<tr>
+		  <td><b>B</b></td>
+		  <td><%= question.answer2 %></td>
+		  <td class="center">
+		    <%= if question.answer2_correct do %>
+		    yes
+		    <% else %>
+		    no
+		    <% end %>
+		  </td>
+		</tr>
+
+		<tr>
+		  <td><b>C</b></td>
+		  <td><%= question.answer3 %></td>
+		  <td class="center">
+		    <%= if question.answer3_correct do %>
+		    yes
+		    <% else %>
+		    no
+		    <% end %>
+		  </td>
+		</tr>
+
+		<tr>
+		  <td><b>D</b></td>
+		  <td><%= question.answer4 %></td>
+		  <td class="center">
+		    <%= if question.answer4_correct do %>
+		    yes
+		    <% else %>
+		    no
+		    <% end %>
+		  </td>
+		</tr>
+	      </tbody>
+	    </table>  
+	  </div>
+	</li>
+	<% end %>
+  </ul>
+  <% end %>
+  
+  
+  <div id="new-question-modal" class="modal">
+    <div class="modal-content">
+      <h4>New Question</h4>
+      <br/>
+      <%= form_for @question_changeset, Routes.question_path(@conn, :create), [id: "new-question-form"], fn f -> %>
+    <div class="input-field">
+      <%= text_input f, :title, [autocomplete: :off] %>
+      <%= label f, :title, "Question" %>
+    </div>
+
+    <div class="input-field">
+      <%= textarea f, :code, [class: "materialize-textarea", autocomplete: :off] %>
+      <%= label f, :code, "Source code (optional)" %>
+    </div>
+
+    <span>Preview:</span>
+    <pre><code class="cpp code"></code></pre>
+
+    <%= hidden_input f, :quiz_id, [value: @quiz.id] %>
+    
+    <h5>Answers</h5>
+    
+    <ul>
+      <li>
+	<div class="input-field inline">
+	  <%= text_input f, :answer1, [autocomplete: :off] %>
+	  <%= label f, :answer1, "Answer A" %>
+	</div>
+	<span>
+	  <label>
+	    <%= checkbox f, :answer1_correct %>
+	    <span>Is correct</span>
+	  </label>
+	</span>
+      </li>
+      <li>
+	<div class="input-field inline">
+	  <%= text_input f, :answer2, [autocomplete: :off] %>
+	  <%= label f, :answer2, "Answer B" %>
+	</div>
+	<span>
+	  <label>
+	    <%= checkbox f, :answer2_correct %>
+	    <span>Is correct</span>
+	  </label>
+	</span>
+      </li>
+      <li>
+	<div class="input-field inline">
+	  <%= text_input f, :answer3, [autocomplete: :off] %>
+	  <%= label f, :answer3, "Answer C" %>
+	</div>
+	<span>
+	  <label>
+	    <%= checkbox f, :answer3_correct %>
+	    <span>Is correct</span>
+	  </label>
+	</span>
+      </li>
+      <li>
+	<div class="input-field inline">
+	  <%= text_input f, :answer4, [autocomplete: :off] %>
+	  <%= label f, :answer4, "Answer D" %>
+	</div>
+	<span>
+	  <label>
+	    <%= checkbox f, :answer4_correct %>
+	    <span>Is correct</span>
+	  </label>
+	</span>
+      </li>
+    </ul>
+    
+    <div class="modal-footer">
+      <%= submit "Save", class: "modal-close btn btn-flat submit" %>
+    </div>
+    
+    <% end %>
+</div>
+</div>
+
+</div>
+
+<script> window.onEditQuizPage = true </script>

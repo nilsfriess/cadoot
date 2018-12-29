@@ -1,0 +1,54 @@
+<div class="host-container">
+  <div class="loader">
+    <h1 class="counter">5</h1>
+  </div>
+
+  <div class="content">
+    <div class="header">
+      <h4><span class="light"><%= @quiz.title %></span></h4>
+      <button class="btn next-question">Next</button>
+    </div>
+    <hr/>
+    <h2 class="question-title">
+      <%= Enum.at(@quiz.questions, 0).title  %>
+    </h2>
+    <pre><code style="display: none"  class="cpp code"></code></pre>
+
+    <div class="answers">
+      <div class="card">
+	<div class="card-content answer1">
+	  <span class="card-title">A</span>
+	  <h3></h3>
+	</div>
+      </div>
+      
+      <div class="card">
+	<div class="card-content answer2">
+	  <span class="card-title">B</span>
+	  <h3></h3>
+	</div>
+      </div>
+
+      <div class="card">
+	<div class="card-content answer3">
+	  <span class="card-title">C</span>
+	  <h3></h3>
+	</div>
+      </div>
+      
+      <div class="card">
+	<div class="card-content answer4">
+	  <span class="card-title">D</span>
+	  <h3></h3>
+	</div>
+      </div>
+    </div>
+
+  </div>
+  
+</div>
+
+<script>
+  window.quizPin = <%= @quiz.pin %>
+  window.onHostPage = true
+</script>

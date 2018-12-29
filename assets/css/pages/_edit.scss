@@ -1,0 +1,62 @@
+.edit-container {
+    h2 {
+	display: inline-block;
+    }
+    
+    .submit {
+	float: right;
+	margin-top: 42px;
+    }
+    
+    // ul .input-field {
+    // 	width: 70%;
+    // 	margin-right: 10%;
+    // }
+    
+    .question-block {
+	h3 {
+	    display: inline-block;    
+	}
+    
+	.btn {
+	    float: right;
+	    margin-top: 26px;
+	}
+    }
+    
+    .secondary-content {
+	transition: 200ms ease;
+    }
+    
+    .delete {
+	margin-left: 24px;
+    }
+    
+    .collection emph {
+	font-weight: 700;
+    }
+    
+    .collapsible li .collapsible-header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+    }
+    
+    .number {
+	margin-right: 12px;
+	font-size: 1.3em;
+	font-weight: 200;
+    }
+
+    .modal li {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+
+	:first-child {
+	    flex: 1;
+	    margin-right: 24px;
+	}
+    }
+
+}

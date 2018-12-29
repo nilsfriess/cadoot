@@ -1,0 +1,50 @@
+.host-container {
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    
+    .header {
+	display: flex;
+	float-direction: column;
+	align-items: center;
+	justify-content: space-between;
+    }
+
+    .loader {
+	margin-top: 0;
+    }
+
+    .content {
+	display: none;
+	flex-direction: column;
+	justify-content: space-between;
+	height: 80%;
+    }
+    
+    .card {
+	padding: 24px 12px;
+    }
+    
+    .card-content h3 {
+	margin-bottom: 34px;
+    }
+
+    .code {
+	margin: 24px;
+	font-size: 1.5em;
+    }
+
+    .answers {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-row-gap: 12px;
+	grid-column-gap: 30px;
+	margin: 0 auto;
+    }
+
+    .answers .card {
+	min-width: 40vw;
+	max-width: 480px;	
+    }
+}

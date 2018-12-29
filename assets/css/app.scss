@@ -1,0 +1,77 @@
+@import "pages/host";
+@import "pages/start";
+@import "pages/landing";
+@import "pages/edit";
+
+body, html {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    height: 100vh;
+}
+
+main {
+    height: 100%;
+    margin: 0;
+    padding: 24px;
+}
+
+/* Error flash on landing page */
+.card.alert {
+    position: absolute;
+    bottom: 20vh;
+    width: 80vw;
+    max-width: 640px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
+}
+
+@keyframes pulse {
+    0% {
+	transform: scale(0.8);
+    }
+
+    50% {
+	transform: scale(2);
+    }
+
+    100% {
+	transform: scale(0.8);
+    }
+}
+
+.center {
+    text-align: center;
+}
+
+.loader h1 {
+    font-size: 5em;
+    animation: pulse 1s forwards;
+    animation-iteration-count: 5;
+}
+
+.answers .card .card-content {
+    display: flex;
+    align-items: center;
+    padding-left: 6px;
+}
+
+.card-title {
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    border: 1px solid black;
+    text-align: center;
+    font-size: 24px;
+    margin-top: 4px;
+    margin-right: 16px;
+}

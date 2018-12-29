@@ -1,0 +1,39 @@
+.start-container {
+    .loader {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-top: 20vh;
+	margin-bottom: 24px;
+    }
+    
+    #lobby-loader {
+	width: 20vw;
+	height: 20vw;
+    }
+    
+    h3 {
+	display: inline;
+    }
+    
+    #online_count {
+	float: right;
+	padding-top: 24px;
+    }
+    
+    button:hover {
+	color: white;
+    }
+
+    .answers {
+	display: none;
+    }
+
+    .answers p {
+	font-size: 1.2em;
+    }
+
+    .card {
+	transition: all 200ms cubic-bezier(0, 0, 0.2, 1);
+    }
+}
