@@ -14,21 +14,12 @@ module.exports = (env, options) => ({
     ],
   },
   entry: {
-    app: [
-      './js/app.js',
-      './js/socket.js',
-      './js/helpers.js',
-      './js/pages/editQuiz.js',
-      './js/pages/host.js',
-      './js/pages/info.js',
-      './js/pages/landing.js',
-      './js/pages/start.js',
-    ].concat(glob.sync('./vendor/**/*.js')),
-    vendor: ['underscore'],
+    app: './js/app.js',
+    vendor: ['underscore'].concat(glob.sync('./vendor/**/*.js')),
   },
   output: {
-    filename: '[name].js',
-    path: path.resolve(__dirname, '../priv/static/js'),
+    filename: 'js/[name].js',
+    path: path.resolve(__dirname, '../priv/static'),
   },
   module: {
     rules: [
@@ -46,7 +37,7 @@ module.exports = (env, options) => ({
     ],
   },
   plugins: [
-    new MiniCssExtractPlugin({filename: '../css/app.css'}),
+    new MiniCssExtractPlugin({filename: './css/app.css'}),
     new CopyWebpackPlugin([{from: 'static/', to: '../'}]),
     new webpack.ProvidePlugin({
       _: 'underscore',
